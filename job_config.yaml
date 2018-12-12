@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job 
+metadata:
+  name: fibo 
+spec:
+  template:
+    metadata:
+      labels:
+        app: fibo
+    spec:
+      volumes:
+      - name: fibo-cluster
+      containers:
+      - name: fibo
+        image: localhost:5000/fibo:0.1
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "400m"
+          limits:
+            memory: "2048Mi"
+            cpu: "700m"
+      restartPolicy: Never 
